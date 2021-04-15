@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    
+    const duanzi = axios.creat({
+      baseURL:'http:www.baidu.com',
+      timeout:2000
+    })
+    duanzi({
+      url:'/getjoke'
+    }).then(res=>{
+      console.log(res);
+    })
+    // 也可：
+    duanzi.get('/getjoke').then(res=>{
+      console.log(res);
+    })
+  </script>
+</body>
+</html>

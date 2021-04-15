@@ -1,0 +1,51 @@
+axios是一个基于promise的http库，可以在浏览器和node.js中使用
+特性
+从浏览器中创建 XMLHttpRequests
+从 node.js 创建 http 请求
+支持 Promise API
+拦截请求和响应
+转换请求数据和响应数据
+取消请求
+自动转换 JSON 数据
+客户端支持防御 XSRF
+1.按照axios
+npm install axios
+axios 是基于promise对ajax的一种封装
+axios get有参请求有两种方式
+1.直接在url后拼接参数
+axios({
+  method:'get',
+  url:'http://www.baidu.com?id=1'
+}).then(res=>{
+  console.log(res)
+}).catch(err=>{
+  console.log(err)
+})
+2.用params 键值对
+axios({
+   method:'get',
+  url:'http:www.baidu.com',
+  params:{
+    id:'1',
+  }
+}).then(res=>{
+  console.log(res)
+}).catch(err=>{
+  console.log(err)
+})
+用post有参
+axios.post('http://www.baidu.com',"name=zahan&id=1").then(res=>{
+  console.log(res);
+})
+如果使用data进行post有参传递 后台要把axios自动转化的json数据转化为java对象
+axios({
+   method:'post',
+  url:'http:www.baidu.com',
+  data:{
+    id:'1',
+  }
+}).then(res=>{
+  console.log(res)
+}).catch(err=>{
+  console.log(err)
+})

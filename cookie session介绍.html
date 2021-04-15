@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  http是无状态的
+  cookie session实现状态保持
+  cookie实现过程：
+  客户端发送请求：服务器处理 将用户当前操作的相关数据存储到cookie中，将处理结果和cookie一起返回 cookie数据是通过setcookie 返回，响应头
+  客户端接收到响应结果，响应结果包含了服务器生成的cookie，再次发送请求时，会把之前获取的cookie值一起返回给服务器
+  服务器接收请求并根据客户端发送过来的cookie一起进行相关处理 响应返回
+  cookie默认有效期是关闭浏览器 也可自己设置 setcookie('uname','admin',1000)
+  cookie是怎么创建怎么删除
+  cookie不安全，只能存储字符串，大约4kb
+  
+
+  session 
+  session最大的特点就是把数据存储在了服务器
+  session 也是一种会话技术 数据存在服务器端，相较而言比较安全 服务器将session数据保持在服务器，而将session的用户id存储在客户端电脑
+  session 存储数据类型 除了资源外的数据类型都可以 
+  session文件没有大小限制
+  session实现过程：
+  客户端发送请求 服务器进行处理，同时生成一个用于存储数据的文件，并为这个文件生成一个id号，用setCookie的方式设置id号将数据写入到文件，将操作结果和id号一并返回
+  再次向服务器发送请求，会将之前收到的sessionId传递给服务器，服务器会根据sessionId找到对应文件的数据，进行相应的处理操作
+
+</body>
+</html>

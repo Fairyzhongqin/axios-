@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  AJAX:
+  本质：是在http协议的基础上以异步的方式通过xmlhttprEQUEST对象与服务器进行通信
+  作用：可以在页面不刷新的情况下，请求服务器，局部更新页面的数据
+  ajax发送请求的详细说明
+  <script>
+    document.querySelector('#username').onblur=function(){
+
+      1.获取用户数据
+    var name = this.value;
+    2.让异步对象发送请求
+       2.1创建异步对象
+       var xhr = new XMLHttpRequest();
+       2.2设置请求行 open(请求方式，请求url)
+       xhr.open("get","服务器地址?参数名="+参数);
+       2.3设置请求头 setRequestHeader('key':'value')
+          //get 方式不需要设置请求头
+          //post需要设置Content-Type:application/x-www-form-urlencoded
+      2.4设置 请求体：发送请求 send(参数： key=value&key=value)
+        //如果有参数，post应该在这个位置传递参数
+        //对于get请求 不需要再这个位置传递参数
+        xhr.send();
+      响应报文：
+      //报文行：响应状态码 响应状态信息 200 ok
+      //报文头：服务器返回客户端的一些额外信息
+      //报文体：服务器返回给客户端的数据 responseText:普通字符串 responseXML:符合xml格式的字符串
+       xhr.status==200服务器 成功响应 
+       数据已经回到客户端并且可以使用
+       监听异步对象的响应状态readyState
+       //0:创建了异步对象，还没真正发送请求
+       //1.调用了send对象，正再发送请求
+       //2.send方法执行完毕，已经收到服务器的响应内容，原始内容，还不可以使用
+      //  3.正再解析数据
+      //4.响应内容解析完毕，可以使用
+       
+       xhr.onreadystatechange=function() {
+        if(xhr.status==200&& xhr.readyState==4)
+       {
+        console.log(xhr.responseTex);
+
+       }
+       }
+    
+ 
+      }
+    
+  </script>
+
+  <!-- post用ajax发送请求 -->
+  <script>
+    document.querySelector('div').onclick=function(){
+      var name = this.innerHtml;
+      var xhr = new XMLHttpRequest();
+      xhr.open("post","url地址");
+      //设置请求头
+      xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+      // 设置超时
+      xhr.timeout = 2000;
+      xhr.ontimeout=function(e){
+
+      }
+      //如果想获取表单元素 可以用formdata formdata的post请求不用设置请求头
+      //1.先获取表单 然后用New formdata返回对象
+      var myform = document.querySelector('#form');
+      var formdata = new FormData(myform)
+      formdata可以追加变单中没有的参数
+      formdata.append("address","谋谟")
+      xhr.send(formdata)
+      xhr.send("username="+name);
+      xhr.onreadystatechange=function() {
+        if(xhr.status==200&& xhr.readyState==4)
+       {
+        console.log(xhr.responseTex);
+        var result = xhr.responseText;
+      在js中通过JSON.parse方法将json格式的字符串转化为js数组或对象
+      如果文件以[]来描述数据，就转化为数组
+      如果文件以{}来描述数据，就转化为对象
+      var data = JSON.parse(result);
+
+       }
+       }
+    }
+  </script>
+</body>
+</html>

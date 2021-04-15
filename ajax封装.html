@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    option.type请求方式
+    option.url请求地址
+    option.data 当前请求传递的参数
+    option.callback渲染方式
+    var $={
+      ajax:fnction(option){
+        var type = option.type|| 'get';
+        var url = option.url || location.href;
+        var data = this.getpa(opstion.data)|| "";
+        var success = option.success;
+        var xhr = new XMLHttpRequest();
+        if(type=='get')
+        {
+          url+=data;
+          data = null;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
